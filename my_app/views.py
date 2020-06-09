@@ -25,7 +25,7 @@ def new_search(request):
     final_posting = []
 
     for post in post_listing:
-        post_title = post.find(class_='result-title').text
+        post_title = str(post.find(class_='result-title').text)[:20]
         post_url = post.find('a').get('href')
 
         if  post.find(class_='result-price'):
@@ -39,7 +39,7 @@ def new_search(request):
             post_image_url = BASE_IMAGE_URL.format(post_image_url)
             print(post_image_url)
         else:
-            post_image_url = 'https://images.craigslist.org/images/peace.jpg'
+            post_image_url = 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
         final_posting.append((post_title, post_url, post_price, post_image_url))
 
     stuff_for_frontend = {
